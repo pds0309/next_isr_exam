@@ -1,5 +1,6 @@
 import todoApi from "@/api/todoApi";
 import { useState } from "react";
+import axios from "axios";
 export default function Home() {
   const [name, setName] = useState<string>("");
 
@@ -8,6 +9,7 @@ export default function Home() {
       name,
       createdAt: new Date().toString(),
     });
+    await axios.get("/api/revalidate");
     setName("");
     if (typeof window !== "undefined") {
       alert("등록성공");
