@@ -12,7 +12,6 @@ export function generateQueryClient(): QueryClient {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 5000,
         refetchOnMount: false,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,

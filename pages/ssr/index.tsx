@@ -1,22 +1,22 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import React from "react";
 import { generateQueryClient } from "../_app";
 import todoApi from "@/api/todoApi";
 import TodoList from "@/components/TodoList";
 import { dehydrate } from "@tanstack/react-query";
 
-const Ssg = () => {
+const Ssr = () => {
   return (
     <div>
-      <h2>SSG 페이지</h2>
-      <TodoList queryKey="ssg" />
+      <h2>Ssr 페이지</h2>
+      <TodoList queryKey="ssr" />
     </div>
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = generateQueryClient();
-  await queryClient.prefetchQuery(["todo", "ssg"], todoApi.getList);
+  await queryClient.prefetchQuery(["todo", "ssr"], todoApi.getList);
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -24,4 +24,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Ssg;
+export default Ssr;
