@@ -7,6 +7,11 @@ import { NextRequest, NextResponse } from "next/server";
   - reference: 'https://nextjs.org/docs/api-reference/next/server'
  */
 export function middleware(request: NextRequest, response: NextResponse) {
+  /**
+   * if(!someValidation) {
+   *   // 넌 지나갈 수 없다.
+   * }
+   */
   const secret = process.env.NEXT_PUBLIC_REVALIDATION_SECRET;
   return NextResponse.rewrite(
     new URL(`/api/revalidate?secret=${secret}`, request.nextUrl.origin)

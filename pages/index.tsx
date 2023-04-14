@@ -9,6 +9,7 @@ export default function Home() {
       name,
       createdAt: new Date().toString(),
     });
+    // XXX: 좋지 않은 방법
     await axios.get("/api/revalidate");
     setName("");
     if (typeof window !== "undefined") {
